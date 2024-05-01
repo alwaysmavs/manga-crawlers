@@ -1,0 +1,27 @@
+type: task_block
+title: typescript_lib_885b13
+icon: https://static.oomol.com/icons/typescript.png
+executor:
+  name: node_executor
+  entry: index.ts
+inputs_def:
+  - handle: path
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: dir
+  - handle: title
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+  - handle: imagePaths
+    serialize:
+      serializer: json
+      json_schema:
+        type: array
+        items:
+          type: string
+outputs_def:
+  - handle: out

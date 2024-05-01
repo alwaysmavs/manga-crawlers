@@ -1,0 +1,74 @@
+nodes:
+  - task: ../../blocks/typescript_lib_fe0ffd/block.oo.yaml
+    node_id: 0ffd6222-99f9-4ae7-ab34-7d6d311774d0
+    inputs_from:
+      - handle: in
+        cache:
+          initial_value:
+      - handle: urls
+        from_node:
+          - node_id: 52faf235-8948-4b37-bfa3-487cca68c0b0
+            output_handle: urls
+      - handle: cookie
+        from_node:
+          - node_id: cd6c9d49-6632-4773-8b6d-851d915056ea
+            output_handle: cookie
+    title: 获取章节图片下载地址
+  - task: ../../blocks/typescript_lib_4252fa/block.oo.yaml
+    node_id: 52faf235-8948-4b37-bfa3-487cca68c0b0
+    inputs_from:
+      - handle: in
+        cache:
+          initial_value: true
+      - handle: pageUrl
+        cache:
+          initial_value: https://www.baozimh.com/
+      - handle: url
+        cache:
+          initial_value: https://cn.baozimh.com/comic/yaoshenji-taxuedongman
+      - handle: maxResponse
+        cache:
+          initial_value: 5
+      - handle: cookie
+        from_node:
+          - node_id: cd6c9d49-6632-4773-8b6d-851d915056ea
+            output_handle: cookie
+    title: 获取漫画章节
+  - task: ../../blocks/typescript_lib_859f52/block.oo.yaml
+    node_id: 9f52de5d-4c21-4efa-9d65-94c48226b47f
+    inputs_from:
+      - handle: page
+        from_node:
+          - node_id: 0ffd6222-99f9-4ae7-ab34-7d6d311774d0
+            output_handle: page
+      - handle: path
+        cache:
+          initial_value: /oomol-storage/image2
+    title: 下载到本地文件夹
+  - task: ../../blocks/typescript_lib_885b13/block.oo.yaml
+    node_id: 5b138931-a53f-4c3b-9cbd-51b3c9d8c4ea
+    inputs_from:
+      - handle: imagePathes
+        from_node:
+          - node_id: 9f52de5d-4c21-4efa-9d65-94c48226b47f
+            output_handle: imagePaths
+      - handle: imagePaths
+        from_node:
+          - node_id: 9f52de5d-4c21-4efa-9d65-94c48226b47f
+            output_handle: imagePaths
+      - handle: title
+        from_node:
+          - node_id: 9f52de5d-4c21-4efa-9d65-94c48226b47f
+            output_handle: title
+      - handle: path
+        cache:
+          initial_value: /oomol-storage/pdf2
+    title: 合成 PDF 存本地文件夹
+  - task: ../../blocks/typescript_lib_2fcd6c/block.oo.yaml
+    node_id: cd6c9d49-6632-4773-8b6d-851d915056ea
+    inputs_from:
+      - handle: cookie
+        cache:
+          initial_value: _ga=amp-9KGwFfORVOkE12VExMlt6Q;
+            cf_clearance=P5NPr_e1x8bmG0EbuwDVyU9rzPrf0S2LByy.s7mQpy4-1714469090-1.0.1.1-lYW4hugNsWy4ndsToXbj6SmUVu2VV8zaz64pROutLl9_ECzWVwHrDyqNZXkejhhVZwXic1N3QQPyzYHGAER8jQ
+    title: cookie

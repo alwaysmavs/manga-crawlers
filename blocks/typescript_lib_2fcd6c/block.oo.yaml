@@ -1,0 +1,20 @@
+type: task_block
+title: typescript_lib_2fcd6c
+icon: https://static.oomol.com/icons/typescript.png
+executor:
+  name: node_executor
+  entry: index.ts
+inputs_def:
+  - handle: cookie
+    serialize:
+      serializer: json
+      json_schema:
+        type:
+          - string
+outputs_def:
+  - handle: cookie
+    serialize:
+      serializer: json
+      json_schema:
+        type:
+          - string
